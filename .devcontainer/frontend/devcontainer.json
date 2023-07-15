@@ -16,5 +16,6 @@
         }
     },
     "remoteUser": "node",
-    "service": "frontend" //attachするコンテナはspringが入っているコンテナを指定
+    "service": "frontend",
+    "postCreateCommand": "npm install"
 }

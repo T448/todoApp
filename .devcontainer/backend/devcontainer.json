@@ -18,5 +18,5 @@
         }
     },
     "remoteUser": "java",
-    "service": "backend" //attachするコンテナはspringが入っているコンテナを指定
+    "service": "backend"
 }

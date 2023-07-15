@@ -3,6 +3,7 @@ services:
   mysql:
     container_name: mysql
     build: ../docker/mysql
+    image: todoapp_mysql
     environment:
       MYSQL_DATABASE: mysqldb
       MYSQL_USER: user
@@ -16,11 +17,13 @@ services:
   backend:
     container_name: backend
     build: ./spring
+    image: todoapp_backend
     depends_on:
       - mysql
     ports:
       - "8080:8080"
     tty: true
+    user: java
     volumes:
       - ../todoApp_backend:/home/java/srv:cached
       - ~/.ssh:/root/.ssh
@@ -29,6 +32,7 @@ services:
   frontend:
     container_name: frontend
     build: ./vue
+    image: todoapp_frontend
     ports:
       - 9000:8080
     volumes:
@@ -40,14 +44,16 @@ services:
     tty: true
   redis:
     container_name: redis
-    image: "redis:latest"
+    build: ./redis
+    image: todoapp_redis
     ports:
       - "6379:6379"
     volumes:
       - redis-data:/data
   redisinsight:
     container_name: redisinsight
-    image: redislabs/redisinsight:latest
+    build: ./redisinsight
+    image: todoapp_redisinsight
     ports:
       - 8001:8001
     depends_on:
