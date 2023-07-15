@@ -1,0 +1,61 @@
+version: '3.6'
+services:
+  mysql:
+    container_name: mysql
+    build: ../docker/mysql
+    environment:
+      MYSQL_DATABASE: mysqldb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysql/initdb:/docker-entrypoint-initdb.d
+      - mysql_db:/var/lib/mysql
+  backend:
+    container_name: backend
+    build: ./spring
+    depends_on:
+      - mysql
+    ports:
+      - "8080:8080"
+    tty: true
+    volumes:
+      # - ../spring_project:/home/java/srv:cached
+      - ../todoApp-backend:/home/java/srv:cached
+      - ~/.ssh:/root/.ssh #sshキー
+      - ~/.ssh:/home/java/srv/.ssh #sshキー
+    working_dir: /home/java/srv
+  frontend:
+    container_name: frontend
+    build: ./vue
+    ports:
+      - 9000:8080
+    volumes:
+      # - ../vue_project:/home/node/app:cached
+      - ../todoApp-frontend:/home/node/app:cached
+      - ~/.ssh:/root/.ssh #sshキー
+      - ~/.ssh:/home/node/app/.ssh #sshキー
+    working_dir: /home/node/app
+    stdin_open: true
+    tty: true
+  redis:
+    container_name: redis
+    image: "redis:latest"
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+  redisinsight:
+    container_name: redisinsight
+    image: redislabs/redisinsight:latest
+    ports:
+      - 8001:8001
+    depends_on:
+      - redis
+
+volumes:
+  mysql_db:
+    driver: local
+  redis-data:

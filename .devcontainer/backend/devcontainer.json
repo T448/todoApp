@@ -1,0 +1,22 @@
+{
+    "name": "spring",
+    "workspaceFolder": "/home/java/srv",
+    "dockerComposeFile": "../../docker/docker-compose.yml",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "vscjava.vscode-java-pack",
+                "pivotal.vscode-boot-dev-pack",
+                "gabrielbb.vscode-lombok",
+                "vscjava.vscode-gradle",
+                "dbaeumer.vscode-eslint",
+                "ms-azuretools.vscode-docker",
+                "streetsidesoftware.code-spell-checker",
+                "mhutchie.git-graph",
+                "eamodio.gitlens"
+            ]
+        }
+    },
+    "remoteUser": "java",
+    "service": "backend" //attachするコンテナはspringが入っているコンテナを指定
+}
