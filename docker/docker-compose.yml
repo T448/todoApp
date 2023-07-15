@@ -22,10 +22,9 @@ services:
       - "8080:8080"
     tty: true
     volumes:
-      # - ../spring_project:/home/java/srv:cached
-      - ../todoApp-backend:/home/java/srv:cached
-      - ~/.ssh:/root/.ssh #sshキー
-      - ~/.ssh:/home/java/srv/.ssh #sshキー
+      - ../todoApp_backend:/home/java/srv:cached
+      - ~/.ssh:/root/.ssh
+      - ~/.ssh:/home/java/.ssh
     working_dir: /home/java/srv
   frontend:
     container_name: frontend
@@ -33,10 +32,9 @@ services:
     ports:
       - 9000:8080
     volumes:
-      # - ../vue_project:/home/node/app:cached
-      - ../todoApp-frontend:/home/node/app:cached
-      - ~/.ssh:/root/.ssh #sshキー
-      - ~/.ssh:/home/node/app/.ssh #sshキー
+      - ../todoApp_frontend:/home/node/app:cached
+      - ~/.ssh:/root/.ssh
+      - ~/.ssh:/home/node/.ssh
     working_dir: /home/node/app
     stdin_open: true
     tty: true

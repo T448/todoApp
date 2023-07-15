@@ -14,6 +14,3 @@ RUN apt update
 RUN apt upgrade -y
 RUN apt install git -y
 USER $USERNAME
-
-COPY . /home/java/srv
-WORKDIR /home/java/srv
