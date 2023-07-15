@@ -1,8 +1,5 @@
 FROM openjdk:17-jdk-slim
 
-# VOLUME /tmp
-# RUN mkdir /app
-# WORKDIR /app
 ARG USERNAME=java
 ARG USER_DIR=/home/$USERNAME
 ARG WORK_DIR=$USER_DIR/srv
