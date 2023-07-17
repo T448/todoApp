@@ -5,16 +5,17 @@
     "customizations": {
         "vscode": {
             "extensions": [
-                "vscjava.vscode-java-pack",
-                "pivotal.vscode-boot-dev-pack",
-                "gabrielbb.vscode-lombok",
-                "vscjava.vscode-gradle",
-                "dbaeumer.vscode-eslint",
-                "ms-azuretools.vscode-docker",
-                "streetsidesoftware.code-spell-checker",
-                "mhutchie.git-graph",
-                "eamodio.gitlens"
-            ]
+				"vscjava.vscode-java-pack",
+				"pivotal.vscode-boot-dev-pack",
+				"gabrielbb.vscode-lombok",
+				"vscjava.vscode-gradle",
+				"dbaeumer.vscode-eslint",
+				"ms-azuretools.vscode-docker",
+				"streetsidesoftware.code-spell-checker",
+				"mhutchie.git-graph",
+				"eamodio.gitlens",
+				"adpyke.vscode-sql-formatter"
+			]
         }
     },
     "remoteUser": "java",
