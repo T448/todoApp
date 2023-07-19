@@ -1,11 +1,21 @@
 # todoApp
-### backend repository
+### Backend Repository
 - https://github.com/T448/todoApp_backend
 
-### frontend repository
+### Frontend Repository
 - https://github.com/T448/todoApp_frontend
 
-# directory
+# Roadmap
+- V1.0 
+    - Calendar View
+    - List View
+    - Timeline View
+    - Gantt Chart
+    - Project Sharing
+- V2.0
+    - AI Manager
+
+# Directory
 ```
 .
 ├── docker/
