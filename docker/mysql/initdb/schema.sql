@@ -9,3 +9,15 @@ CREATE TABLE IF NOT EXISTS users (
   PRIMARY KEY (`ulid`),
   UNIQUE KEY `UK1` (`email`)
 );
+
+CREATE TABLE IF NOT EXISTS events (
+  id VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  summary VARCHAR(255) NOT NULL,
+  parent_event VARCHAR(255),
+  start DATETIME NOT NULL,
+end DATETIME NOT NULL,
+created_at DATETIME NOT NULL,
+updated_at DATETIME NOT NULL,
+PRIMARY KEY (`id`)
+);
