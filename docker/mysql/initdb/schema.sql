@@ -10,22 +10,6 @@ CREATE TABLE IF NOT EXISTS users (
   UNIQUE KEY `UK1` (`email`)
 ) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
-CREATE TABLE IF NOT EXISTS events (
-  id VARCHAR(255) NOT NULL,
-  user_email VARCHAR(255) NOT NULL,
-  title VARCHAR(255) NOT NULL,
-  short_title VARCHAR(255) NOT NULL,
-  project_id VARCHAR(255) NOT NULL,
-  parent_event_id VARCHAR(255),
-  memo VARCHAR(255),
-  start DATETIME NOT NULL,
-  end DATETIME NOT NULL,
-  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  FOREIGN KEY (`user_email`) REFERENCES users(`email`)
-) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-
 CREATE TABLE IF NOT EXISTS colors (
   id VARCHAR(255) NOT NULL,
   code VARCHAR(255) NOT NULL,
@@ -48,4 +32,21 @@ CREATE TABLE IF NOT EXISTS projects (
   FOREIGN KEY (`user_email`) REFERENCES users(`email`),
   FOREIGN KEY (`color_id`) REFERENCES colors(`id`),
   UNIQUE KEY `UK1` (`name`, `user_email`)
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+
+CREATE TABLE IF NOT EXISTS events (
+  id VARCHAR(255) NOT NULL,
+  user_email VARCHAR(255) NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  short_title VARCHAR(255) NOT NULL,
+  project_id VARCHAR(255) NOT NULL,
+  parent_event_id VARCHAR(255),
+  memo VARCHAR(255),
+  start DATETIME NOT NULL,
+  end DATETIME NOT NULL,
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`user_email`) REFERENCES users(`email`),
+  FOREIGN KEY (`project_id`) REFERENCES projects(`id`)
 ) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
