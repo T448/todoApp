@@ -50,3 +50,15 @@ CREATE TABLE IF NOT EXISTS events (
   FOREIGN KEY (`user_email`) REFERENCES users(`email`),
   FOREIGN KEY (`project_id`) REFERENCES projects(`id`)
 ) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+
+CREATE TABLE IF NOT EXISTS memo_templates (
+  id VARCHAR(255) NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  user_email VARCHAR(255) NOT NULL,
+  template VARCHAR(255) NOT NULL,
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`user_email`) REFERENCES users(`email`),
+  UNIQUE KEY `UK1` (`name`, `user_email`)
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
