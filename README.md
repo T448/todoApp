@@ -43,6 +43,12 @@
 5. `ctrl + shift + p`でコマンドパレットを開き、`コンテナーで再度開く`→`spring`を選択する。
 6. 同様に別windowでコマンドパレットを開き、`コンテナーで再度開く`→`vue`を選択する。
 
+# API仕様書
+- [project](https://t448.github.io/todoApp/swagger-ui/?q=API_project.yml)
+- [event](https://t448.github.io/todoApp/swagger-ui/?q=API_event.yml)
+- [memo](https://t448.github.io/todoApp/swagger-ui/?q=API_memo_template.yml)
+
+
 # 機能
 ## 全体像(login前)
 ![](./img/login前.png)
