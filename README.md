@@ -9,7 +9,7 @@
 - V1.0 
     - Calendar View
     - List View
-    - Timeline View
+    - Kanban View
     - Gantt Chart
     - Project Sharing
 - V2.0
