@@ -43,6 +43,21 @@
 5. `ctrl + shift + p`でコマンドパレットを開き、`コンテナーで再度開く`→`spring`を選択する。
 6. 同様に別windowでコマンドパレットを開き、`コンテナーで再度開く`→`vue`を選択する。
 
+# GCPの設定
+## OAuth 2.0 クライアント ID
+- APIとサービス > 認証情報 > 認証情報を作成 > OAuth クライアント ID
+- アプリケーションの種類は"ウェブアプリケーション"を選択
+- 承認済みの JavaScript 生成元に`http://localhost:5173`、承認済みのリダイレクト URIに`http://localhost:5173/app`を入力する。
+- クライアントID,secretを取得できるようになるので、バックエンド、フロントエンドそれぞれの設定ファイルに記入する。
+
+## OAuth同意画面
+- APIとサービス > OAuth同意画面
+- 公開ステータスを"テスト"にする
+- 以下のスコープを追加する
+    - .../auth/userinfo.email
+    - .../auth/calendar
+- テストユーザーにこのアプリを利用したいgmailアドレスを入力する
+
 # API仕様書
 - [project](https://t448.github.io/todoApp/swagger-ui/?q=API_project.yml)
 - [event](https://t448.github.io/todoApp/swagger-ui/?q=API_event.yml)
@@ -73,6 +88,8 @@
 - ログアウトボタン(機能未実装)
 
 右側はプロジェクトリスト。GoogleCalendarのカレンダーと対応している。`+`ボタンを押すとプロジェクト追加ダイアログが表示される。プロパティ名をクリックするとプロジェクト詳細ダイアログが表示される。(未実装)
+
+<p style="color:red;">初回実行時は同期ボタンを押してからブラウザをリロードしてください。</p>
 
 ---
 ## プロジェクト追加ダイアログ
