@@ -1,10 +1,10 @@
 {
-    "name": "spring",
-    "workspaceFolder": "/home/java/srv",
-    "dockerComposeFile": "../../docker/docker-compose.yml",
-    "customizations": {
-        "vscode": {
-            "extensions": [
+	"name": "spring",
+	"workspaceFolder": "/home/java/srv",
+	"dockerComposeFile": "../../docker/docker-compose.yml",
+	"customizations": {
+		"vscode": {
+			"extensions": [
 				"vscjava.vscode-java-pack",
 				"pivotal.vscode-boot-dev-pack",
 				"gabrielbb.vscode-lombok",
@@ -16,8 +16,8 @@
 				"eamodio.gitlens",
 				"adpyke.vscode-sql-formatter"
 			]
-        }
-    },
-    "remoteUser": "java",
-    "service": "backend"
+		}
+	},
+	"remoteUser": "java",
+	"service": "backend-dev"
 }

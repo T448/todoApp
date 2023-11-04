@@ -1,0 +1,54 @@
+version: '3'
+
+services:
+  mysql-prod:
+    container_name: mysql-prod
+    build: ./docker/mysql
+    image: todoapp_mysql
+    environment:
+      MYSQL_DATABASE: mysqldb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - 3306:3306
+    volumes:
+      - ./docker/mysql/initdb:/docker-entrypoint-initdb.d
+      - mysql-db-prod:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p$MYSQL_ROOT_PASSWORD"]
+      interval: 30s
+      timeout: 5s
+      retries: 6
+      start_period: 10s
+  frontend-prod:
+    container_name: frontend-prod
+    build:
+      context: .
+      dockerfile: Dockerfile-production-frontend
+    ports:
+      - "4173:80"
+  backend-prod:
+    container_name: backend-prod
+    build:
+      context: .
+      dockerfile: Dockerfile-production-backend
+    depends_on:
+      mysql-prod:
+        condition: service_healthy
+    tty: true
+    stdin_open: true
+    ports:
+      - "8080:8080"
+  redis-prod:
+    container_name: redis-prod
+    build: ./docker/redis
+    image: todoapp_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data-prod:/data
+volumes:
+  mysql-db-prod:
+    driver: local
+  redis-data-prod:

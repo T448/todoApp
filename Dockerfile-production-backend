@@ -1,0 +1,11 @@
+# 本番環境用
+FROM openjdk:17-jdk-slim as build-stage
+
+WORKDIR /srv
+COPY ./todoApp_backend/ ./
+RUN ./gradlew build
+
+FROM openjdk:17-jdk-slim as production-stage
+
+COPY --from=build-stage /srv/build/libs/spring_project-0.0.1-SNAPSHOT.jar /srv
+CMD ["java", "-jar", "./srv/spring_project-0.0.1-SNAPSHOT.jar" ,"--spring.profiles.active=prod"]

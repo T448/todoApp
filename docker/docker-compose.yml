@@ -1,7 +1,7 @@
 version: '3.6'
 services:
-  mysql:
-    container_name: mysql
+  mysql-dev:
+    container_name: mysql-dev
     build: ../docker/mysql
     image: todoapp_mysql
     environment:
@@ -13,13 +13,20 @@ services:
       - 3306:3306
     volumes:
       - ./mysql/initdb:/docker-entrypoint-initdb.d
-      - mysql_db:/var/lib/mysql
-  backend:
-    container_name: backend
+      - mysql-db-dev:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p$MYSQL_ROOT_PASSWORD"]
+      interval: 30s
+      timeout: 5s
+      retries: 6
+      start_period: 10s
+  backend-dev:
+    container_name: backend-dev
     build: ./spring
     image: todoapp_backend
     depends_on:
-      - mysql
+      mysql-dev:
+        condition: service_healthy
     ports:
       - "8080:8080"
     tty: true
@@ -29,8 +36,8 @@ services:
       - ~/.ssh:/root/.ssh
       - ~/.ssh:/home/java/.ssh
     working_dir: /home/java/srv
-  frontend:
-    container_name: frontend
+  frontend-dev:
+    container_name: frontend-dev
     build: ./vue
     image: todoapp_frontend
     ports:
@@ -42,24 +49,24 @@ services:
     working_dir: /home/node/app
     stdin_open: true
     tty: true
-  redis:
-    container_name: redis
+  redis-dev:
+    container_name: redis-dev
     build: ./redis
     image: todoapp_redis
     ports:
       - "6379:6379"
     volumes:
-      - redis-data:/data
-  redisinsight:
-    container_name: redisinsight
+      - redis-data-dev:/data
+  redisinsight-dev:
+    container_name: redisinsight-dev
     build: ./redisinsight
     image: todoapp_redisinsight
     ports:
       - 8001:8001
     depends_on:
-      - redis
+      - redis-dev
 
 volumes:
-  mysql_db:
+  mysql-db-dev:
     driver: local
-  redis-data:
+  redis-data-dev:
