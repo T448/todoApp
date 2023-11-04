@@ -16,6 +16,6 @@
         }
     },
     "remoteUser": "node",
-    "service": "frontend",
+    "service": "frontend-dev",
     "postCreateCommand": "npm install"
 }
