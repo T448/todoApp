@@ -1,0 +1,49 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "jest"
+  },
+  "target": "ES2021",
+  "useDefineForClassFields": true,
+  "module": "ESNext",
+  "lib": [
+    "ES2021",
+    "DOM",
+    "DOM.Iterable"
+  ],
+  "skipLibCheck": true,
+  "moduleResolution": "node",
+  "allowImportingTsExtensions": true,
+  "allowSyntheticDefaultImports": true,
+  "resolveJsonModule": true,
+  "isolatedModules": true,
+  "noEmit": true,
+  "jsx": "preserve",
+  "strict": true,
+  "noUnusedLocals": true,
+  "noUnusedParameters": true,
+  "esModuleInterop": true,
+  "noFallthroughCasesInSwitch": true,
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/assert": "^1.5.9",
+    "@types/jest": "^29.5.8",
+    "@types/selenium-webdriver": "^4.1.20",
+    "assert": "^2.1.0",
+    "jest": "^29.7.0",
+    "selenium-webdriver": "^4.15.0",
+    "ts-jest": "^29.1.1",
+    "ts-node": "^10.9.1",
+    "tsx": "^4.1.4",
+    "typescript": "^5.2.2"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "description": ""
+}
