@@ -69,11 +69,10 @@ services:
     container_name: selenium-test
     build: ./selenium
     image: selenium_test_dev
-    user: seluser
     ports:
       - "4444:4444"
     volumes:
-      - ../selenium_test:/home/seluser/selenium:cached
+      - ../selenium_test:/home/seluser/selenium
     working_dir: /home/seluser/selenium
     tty: true
     stdin_open: true
