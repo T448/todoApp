@@ -4,7 +4,7 @@ services:
   mysql-prod:
     container_name: mysql-prod
     build: ./docker/mysql
-    image: todoapp_mysql
+    image: todoapp_mysql_prod
     environment:
       MYSQL_DATABASE: mysqldb
       MYSQL_USER: user
@@ -23,6 +23,7 @@ services:
       start_period: 10s
   frontend-prod:
     container_name: frontend-prod
+    image: todoapp_frontend_prod
     build:
       context: .
       dockerfile: Dockerfile-production-frontend
@@ -30,6 +31,7 @@ services:
       - "4173:80"
   backend-prod:
     container_name: backend-prod
+    image: todoapp_backend_prod
     build:
       context: .
       dockerfile: Dockerfile-production-backend
@@ -43,7 +45,7 @@ services:
   redis-prod:
     container_name: redis-prod
     build: ./docker/redis
-    image: todoapp_redis
+    image: todoapp_redis_prod
     ports:
       - "6379:6379"
     volumes:

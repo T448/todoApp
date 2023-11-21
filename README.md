@@ -40,15 +40,18 @@
 
 ```
 
-# How to build development  environment
+# 実行方法(dev)
+開発コンテナを用いて開発しながら動作確認したい場合はこちら(frontendコンテナのportは5173)
 1. 本リポジトリをcloneする。`todoApp`ディレクトリが出現する。
 2. `todoApp`ディレクトリに移動し、[backend](https://github.com/T448/todoApp_backend)と[frontend](https://github.com/T448/todoApp_frontend)のレポジトリをcloneする。
 3. `todoApp/docker/`で`docker-compose up`
 4. vscodeで`todoApp`フォルダを開く。
 5. `ctrl + shift + p`でコマンドパレットを開き、`コンテナーで再度開く`→`spring`を選択する。
 6. 同様に別windowでコマンドパレットを開き、`コンテナーで再度開く`→`vue`を選択する。
+7. 同様に別windowでコマンドパレットを開き、`コンテナーで再度開く`→`selenium`を選択する。これはUI操作の自動テストを行いたいときのみ。
 
-# 本番環境
+# 実行方法(prod)
+localでアプリの実行のみを行いたいときはこちら(frontendコンテナのportは4173)
 `todoApp/`で以下を実行
 ```
 docker-compose -f docker-compose-prod.yml up
@@ -58,8 +61,10 @@ docker-compose -f docker-compose-prod.yml up
 ## OAuth 2.0 クライアント ID
 - APIとサービス > 認証情報 > 認証情報を作成 > OAuth クライアント ID
 - アプリケーションの種類は"ウェブアプリケーション"を選択
-- 承認済みの JavaScript 生成元に`http://localhost:5173`、承認済みのリダイレクト URIに`http://localhost:5173/app`を入力する。
+- 承認済みの JavaScript 生成元に`http://localhost:4173`、`http://localhost:5173`承認済みのリダイレクトURIに`http://localhost:4173/app`,`http://localhost:5173/app`を入力する。
 - クライアントID,secretを取得できるようになるので、バックエンド、フロントエンドそれぞれの設定ファイルに記入する。
+
+注意：ここでリダイレクト先を`localhost`にしているため、`localhost`の部分を`127.0.0.1`にして本アプリを開いても、認証後のリダイレクトで失敗します。
 
 ## OAuth同意画面
 - APIとサービス > OAuth同意画面

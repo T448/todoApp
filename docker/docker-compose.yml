@@ -3,7 +3,7 @@ services:
   mysql-dev:
     container_name: mysql-dev
     build: ../docker/mysql
-    image: todoapp_mysql
+    image: todoapp_mysql_dev
     environment:
       MYSQL_DATABASE: mysqldb
       MYSQL_USER: user
@@ -23,7 +23,7 @@ services:
   backend-dev:
     container_name: backend-dev
     build: ./spring
-    image: todoapp_backend
+    image: todoapp_backend_dev
     depends_on:
       mysql-dev:
         condition: service_healthy
@@ -39,7 +39,7 @@ services:
   frontend-dev:
     container_name: frontend-dev
     build: ./vue
-    image: todoapp_frontend
+    image: todoapp_frontend_dev
     ports:
       - 9000:8080
     volumes:
@@ -52,7 +52,7 @@ services:
   redis-dev:
     container_name: redis-dev
     build: ./redis
-    image: todoapp_redis
+    image: todoapp_redis_dev
     ports:
       - "6379:6379"
     volumes:
@@ -60,11 +60,22 @@ services:
   redisinsight-dev:
     container_name: redisinsight-dev
     build: ./redisinsight
-    image: todoapp_redisinsight
+    image: todoapp_redisinsight_dev
     ports:
       - 8001:8001
     depends_on:
       - redis-dev
+  selenium-test:
+    container_name: selenium-test
+    build: ./selenium
+    image: selenium_test_dev
+    ports:
+      - "4444:4444"
+    volumes:
+      - ../selenium_test:/home/seluser/selenium
+    working_dir: /home/seluser/selenium
+    tty: true
+    stdin_open: true
 
 volumes:
   mysql-db-dev:
